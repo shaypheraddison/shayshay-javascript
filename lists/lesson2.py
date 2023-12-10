@@ -16,11 +16,14 @@ east_states.extend(west_states)
 print(east_states)
 
 # get the difference between two lists(removing same unique values in both lists)
-    #found information from the documentation regarding SETS and utilized that for this one
-first = [1, 2, 3]
-second = [2, 3, 4]
-new_list = list(set(first) ^ set(second)) #the ^ checks for the same value in each (now)set and removes them from the new list. converted the sest into a list as well
-print(new_list)
+    #NO SETS
+all = [1, 2, 3, 4, 5]
+even = [2, 4]
+for x in all:
+    if x in even:
+        all.remove(x)
+
+print(all)
 
 # insert an item at a given position using a list
 teams = ["Titans", "Seahawks", "Ravens"]
