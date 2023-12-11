@@ -13,6 +13,8 @@ for num in mutate:
     print(num + 1)
 
 # create a list and loop backwards through the list
-
+backwards = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+for i in reversed(backwards):
+    print(i)
 
 # create a list and only print out every other item
