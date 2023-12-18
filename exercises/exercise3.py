@@ -3,7 +3,7 @@ values = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", 
 suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
 for value in values:
     for suit in suits:
-        card = {value : suit}
+        card = {"Suit": suit, "Value" : value}
         print(card)
 
 # card = {
