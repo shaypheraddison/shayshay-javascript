@@ -19,4 +19,4 @@ def buy_product():
 if item_purchased == "tobacco" or item_purchased == "alcohol" or item_purchased == "both":
     buy_product()
 else: 
-    print("Please select between alcohol or tobacco")
+    print("Please select between alcohol, tobacco or both")
