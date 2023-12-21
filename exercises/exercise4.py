@@ -20,8 +20,7 @@
 
 # Thank you Python documentation for .center(). Looks ugly now but it sure does work ! 
 
-
 for x in range(1,8,2):
-    print(("*" * x).center(10))
+    print(("*" * x).center(9))
 
 
