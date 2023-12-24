@@ -45,69 +45,56 @@ def check_add_sub_order():
        return subtraction()
     else:
        return addition()
+    
+def replace_div():
+    div_index = single_number.index("/")
+    left_of_div = single_number.index(div_index - 1)
+    right_of_div = single_number.index(div_index + 1)
+    div_no_more = single_number[left_of_div:div_index:right_of_div] = " "
+    return div_no_more
+
+def replace_mult():
+    mult_index = single_number.index("*")
+    left_of_mult = single_number.index(mult_index - 1)
+    right_of_mult = single_number.index(mult_index + 1)
+    mult_no_more = single_number[left_of_mult:mult_index:right_of_mult] = " "
+    return mult_no_more
+
+def replace_sub():
+    sub_index = single_number.index("-")
+    left_of_sub = single_number.index(sub_index - 1)
+    right_of_sub = single_number.index(sub_index + 1)
+    sub_no_more = single_number[left_of_sub:sub_index:right_of_sub] = " "
+    return sub_no_more
+
+def replace_add():
+    add_index = single_number.index("+")
+    left_of_add = single_number.index(add_index - 1)
+    right_of_add = single_number.index(add_index + 1)
+    add_no_more = single_number[left_of_add:add_index:right_of_add] = " "
+    return add_no_more
+
 
 for ops in single_number:
     if "*" in single_number:
         if single_number.index("/") < single_number.index("*"):
             b = check_div_mult_order()
-            find_div = single_number.index("/")
-            single_number[find_div] = " "
+            replace_div()
         a = multiply()
-        find_mult = single_number.index("*")
-        single_number[find_mult] = " "
+        replace_mult()
     elif "/" in single_number:
         b = divide()
-        find_div = single_number.index("/")
-        single_number[find_div] = " "
+        replace_div()
     elif "+" in single_number:
         if single_number.index("-") < single_number.index("+"):
             d = check_add_sub_order()
-            find_sub = single_number.index("-")
-            single_number[find_sub] = " "
+            replace_sub()
         c = addition()
-        find_add = single_number.index("+")
-        single_number[find_add] = " "
+        replace_add()
     elif "-" in single_number:
         d = subtraction()
-        find_sub = single_number.index("-")
-        single_number[find_sub] = " "
+        replace_sub()
 
-# solution = []
 
 print(a + b + c + d)
 print(5 + 10 - 2 / 15 * 20 + 99999)
-
-
-
-
-
-
-
-
-# for ops in single_number:
-#     if ops == "*":
-#         multiply = single_number.index("*")
-#         mult_equation = int(single_number[multiply - 1]) * int(single_number[multiply + 1])
-#         single_number.append(mult_equation)
-#         single_number.remove("*")
-#     elif ops == "/":
-#         divide = single_number.index("/")
-#         div_equation = float(single_number[divide - 1]) / float(single_number[divide + 1])
-#         single_number.append(div_equation)
-#         single_number.remove("/")
-#     elif ops == "+":
-#         addition = single_number.index("+")
-#         add_equation = int(single_number[addition - 1]) + int(single_number[addition + 1])
-#         single_number.append(add_equation)
-#         single_number.remove("+")
-#     elif ops == "-":
-#         subtraction = single_number.index("-")
-#         sub_equation = int(single_number[subtraction - 1]) - int(single_number[subtraction + 1])
-#         single_number.append(sub_equation)
-#         single_number.remove("-")
-
-
-
-
-# total = div_equation + add_equation + mult_equation + sub_equation
-# print(total)
