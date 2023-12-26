@@ -116,7 +116,9 @@ def answer_is():
 
 for ops in single_number:
     if "*" in single_number:
-        if single_number.index("/") < single_number.index("*"):
+        if "/" not in single_number:
+            pass
+        elif single_number.index("/") < single_number.index("*"):
             b = float(check_div_mult_order())
             div_index = single_number.index("/")
             div_num_index()
@@ -131,7 +133,9 @@ for ops in single_number:
         div_num_index()
         single_number[div_index] = b
     elif "+" in single_number:
-        if single_number.index("-") < single_number.index("+"):
+        if "-" not in single_number:
+            pass
+        elif single_number.index("-") < single_number.index("+"):
             d = check_add_sub_order()
             sub_index = single_number.index("-")
             sub_num_index()
@@ -148,4 +152,3 @@ for ops in single_number:
 
 
 print(f"The answer to your equation is: {answer_is():.3f}")
-print(5 + 10 - 2 / 15 * 20 + 99999)
