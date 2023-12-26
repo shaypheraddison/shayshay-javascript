@@ -154,4 +154,3 @@ for ops in single_number:
 
 
 print(f"The answer to your equation is: {answer_is():.3f}")
-print(5 + 10 - 2 / 15 * 20 + 99999)
