@@ -52,12 +52,16 @@ def subtraction():
 
 def check_div_mult_order():
     if single_number.index("/") < single_number.index("*"):
+        if "/" not in single_number:
+            pass
         return divide()
     else:
        return multiply()
 
 def check_add_sub_order():
     if single_number.index("-") < single_number.index("+"):
+       if "-" not in single_number:
+           pass
        return subtraction()
     else:
        return addition()
@@ -111,11 +115,7 @@ def answer_is():
     return answer
 
 for ops in single_number:
-    if "*" not in single_number:
-        continue
     if "*" in single_number:
-        if "/" not in single_number:
-            continue
         if single_number.index("/") < single_number.index("*"):
             b = float(check_div_mult_order())
             div_index = single_number.index("/")
@@ -130,11 +130,7 @@ for ops in single_number:
         div_index = single_number.index("/")
         div_num_index()
         single_number[div_index] = b
-    if "+" not in single_number:
-        continue
     elif "+" in single_number:
-        if "-" not in single_number:
-                continue
         if single_number.index("-") < single_number.index("+"):
             d = check_add_sub_order()
             sub_index = single_number.index("-")
@@ -145,8 +141,6 @@ for ops in single_number:
         add_num_index()
         single_number[add_index] = c
     elif "-" in single_number:
-        if "-" not in single_number:
-                pass
         d = subtraction()
         sub_index = single_number.index("-")
         sub_num_index()
@@ -154,3 +148,4 @@ for ops in single_number:
 
 
 print(f"The answer to your equation is: {answer_is():.3f}")
+print(5 + 10 - 2 / 15 * 20 + 99999)
