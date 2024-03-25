@@ -1,2 +1,2 @@
-Practice examples for python
-NOTE: If you get stuck, please look at documentation at docs.python.org
+Practice examples for JavaScript
+NOTE: If you get stuck, please look at documentation
