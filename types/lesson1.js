@@ -20,4 +20,5 @@ const testObject = {
 };
 
 // # tuple
-const testTuple = (2024, "World", "Series", "Champs")
+// const testTuple = [number, string, string, string] = [2024, "World", "Series", "Champs"];
+// above is the closes thing I could find about tuples
