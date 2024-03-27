@@ -1,10 +1,12 @@
 // # add an item to a array
 const addArray = [];
-addArray.fill("adding", "this", "text");
+addArray.push("testing");
 console.log(addArray);
 
 // # remove an item from a array
-
+const removeArray = [1, 2, 3, 4, 5, 10];
+removeArray.pop();
+console.log(removeArray);
 
 // # add two arrays together
 const array1 = ["test1", "test-1", "test 1"];
@@ -28,4 +30,6 @@ console.log(newArray);
 
 
 // # reverse elements in a array
-
+const startArray = [100, 99, 98, 97];
+const revArray = startArray.reverse();
+console.log(revArray);
