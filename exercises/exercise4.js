@@ -5,14 +5,8 @@
 // #    *****
 // #   *******
 
-const stars = ["*", "***", "*****", "*******"];
+const stars = ["    *", "   ***", "  *****", " *******"];
 
-const star1 = "    *";
-const star2 = "   ***";
-const star3 = "  *****";
-const star4 = " *******";
-
-console.log(star1);
-console.log(star2);
-console.log(star3);
-console.log(star4);
+for (let star of stars) {
+    console.log(star);
+}
