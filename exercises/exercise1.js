@@ -12,7 +12,8 @@ const receipt = {
 
 for (item in receipt) {
     console.log(item);
-    console.log(receipt[item]);
+    console.log(`$${receipt[item]}`);
 }
+
 const totalSum = receipt.apples + receipt.milk + receipt.appleJuice + receipt.cups + receipt.dogFood;
-console.log("Total: " + totalSum);
+console.log(`Total: $${totalSum}`);
