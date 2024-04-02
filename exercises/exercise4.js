@@ -5,8 +5,10 @@
 // #    *****
 // #   *******
 
-const stars = ["    *", "   ***", "  *****", " *******"];
+const stars = ["*", "***", "*****", "*******"];
 
 for (let star of stars) {
-    console.log(star);
+    const tree = star.padStart(3, " ");
+    console.log(tree);
+    
 }
