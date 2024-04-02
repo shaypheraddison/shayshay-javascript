@@ -10,10 +10,10 @@ const receipt = {
     dogFood: 24.99
 };
 
+var totalSum = 0;
 for (item in receipt) {
     console.log(item);
     console.log(`$${receipt[item]}`);
-}
-
-const totalSum = receipt.apples + receipt.milk + receipt.appleJuice + receipt.cups + receipt.dogFood;
+    totalSum += receipt[item];
+} 
 console.log(`Total: $${totalSum}`);
