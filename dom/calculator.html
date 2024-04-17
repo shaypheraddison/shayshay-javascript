@@ -19,6 +19,7 @@
             height: 100%;
             color: whitesmoke;
             font-size: 25px;
+            background-color: darkgreen;
         }
         #display-box {
             display: grid;
@@ -31,16 +32,7 @@
             background-color: rgba(19, 18, 18, 0.902);
             color: whitesmoke;
         }
-        .num-button {
-            background-color: rgba(53, 51, 51, 0.681);
-        }
-        .math-button {
-            background-color: darkgreen;
-        }
-        .result-button {
-            background-color: darkgreen;
-        }
-        #button-equal {
+        #buttonEqual {
             grid-column: 1 / 5;
             grid-row: 6 / 7;
         }
@@ -84,23 +76,23 @@
             grid-column: 3 / 4;
             grid-row: 2 / 3;
         }
-        #button-div {
+        #buttonDiv {
             grid-column: 4 / 5;
             grid-row: 2 / 3;
         }
-        #button-mult {
+        #buttonMultiply {
             grid-column: 4 / 5;
             grid-row: 3 / 4;
         }
-        #button-add {
+        #buttonAdd {
             grid-column: 4 / 5;
             grid-row: 4 / 5;
         }
-        #button-sub {
+        #buttonSub {
             grid-column: 4 / 5;
             grid-row: 5 / 6;
         }
-        #button-dot {
+        #buttonDecimal {
             grid-column: 3 / 4;
             grid-row: 5 / 6;
         }
@@ -116,63 +108,54 @@
         <div id="calc-grid">
             <display-box id="display-box">0</display-box>
             <div id="button0">
-                <button class="num-button">0</button>
+                <button class="number">0</button>
             </div>
             <div id="button1">
-                <button class="num-button">1</button>
+                <button class="number">1</button>
             </div>
             <div id="button2">
-                <button class="num-button">2</button>
+                <button class="number">2</button>
             </div>
             <div id="button3">
-                <button class="num-button">3</button>
+                <button class="number">3</button>
             </div>
-            <div id="buton4">
-                <button class="num-button">4</button>
+            <div id="button4">
+                <button class="number">4</button>
             </div>
             <div id="button5">
-                <button class="num-button">5</button>
+                <button class="number">5</button>
             </div>
             <div id="button6">
-                <button class="num-button">6</button>
+                <button class="number">6</button>
             </div>
             <div id="button7">
-                <button class="num-button">7</button>
+                <button class="number">7</button>
             </div>
             <div id="button8">
-                <button class="num-button">8</button>
+                <button class="number">8</button>
             </div>
             <div id="button9">
-                <button class="num-button">9</button>
+                <button class="number">9</button>
             </div>
-            <div id="button-div">
+            <div id="buttonDiv">
                 <button class="math-button" >/</button>
             </div>
-            <div id="button-mult">
+            <div id="buttonMultiply">
                 <button class="math-button" >x</button>
             </div>
-            <div id="button-add">
+            <div id="buttonAdd">
                 <button class="math-button" >+</button>
             </div>
-            <div id="button-sub">
+            <div id="buttonSub">
                 <button class="math-button" >-</button>
             </div>
-            <div id="button-equal">
-                <button class="result-button" >=</button>
+            <div id="buttonEqual">
+                <button class="math-button" >=</button>
             </div>
-            <div id="button-dot">
-                <button class="num-button" >.</button>
+            <div id="buttonDecimal">
+                <button class="number" >.</button>
             </div>
-
-
-
-
-
-
-
         </div>
-
-
     </main>
 </body>
 </html>

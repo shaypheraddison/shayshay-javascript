@@ -7,3 +7,30 @@
 // # make sure to handle any data type such as int and floats
 // # make sure to apply the correct mathmetical sequence to process the equation
 
+
+const calcDisplay = document.querySelector("#display-box");
+
+const numberButtons = document.querySelectorAll(".number");
+const mathButtons = document.querySelectorAll(".math-button");
+console.log(numberButtons);
+console.log(mathButtons);
+
+
+function displayValue(value) {
+    calcDisplay.textContent = value;
+};
+
+function clickNumberButtons() {
+    numberButtons.forEach(function (button) {
+        button.addEventListener("click", function() {
+            const buttonValue = button.textContent;
+            displayValue(buttonValue);
+        });
+    });
+};
+
+clickNumberButtons()
+
+
+
+
