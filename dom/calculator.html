@@ -9,59 +9,29 @@
 </head>
 <body>
     <main>
-        <h1 class="title" id="calc-title">Calculator Program</h1>
+        <h1 class="title">Calculator Program</h1>
 
-        <div id="calc-grid">
-            <display-box id="display-box">0</display-box>
-            <div id="button0">
-                <button class="number">0</button>
-            </div>
-            <div id="button1">
-                <button class="number">1</button>
-            </div>
-            <div id="button2">
-                <button class="number">2</button>
-            </div>
-            <div id="button3">
-                <button class="number">3</button>
-            </div>
-            <div id="button4">
-                <button class="number">4</button>
-            </div>
-            <div id="button5">
-                <button class="number">5</button>
-            </div>
-            <div id="button6">
-                <button class="number">6</button>
-            </div>
-            <div id="button7">
-                <button class="number">7</button>
-            </div>
-            <div id="button8">
-                <button class="number">8</button>
-            </div>
-            <div id="button9">
-                <button class="number">9</button>
-            </div>
-            <div id="buttonDiv">
-                <button class="math-button" >/</button>
-            </div>
-            <div id="buttonMultiply">
-                <button class="math-button" >x</button>
-            </div>
-            <div id="buttonAdd">
-                <button class="math-button" >+</button>
-            </div>
-            <div id="buttonSub">
-                <button class="math-button" >-</button>
-            </div>
-            <div id="buttonEqual">
-                <button class="math-button" >=</button>
-            </div>
-            <div id="buttonDecimal">
-                <button class="number" >.</button>
-            </div>
+        <div id="calc-grid-container">
+            <div id="display-box"></div>
+            <input type="button" class="num-button" id="button0" value="0" onclick="displayValue('0')">
+            <input type="button" class="num-button" id="button1" value="1" onclick="displayValue('1')">
+            <input type="button" class="num-button" id="button2" value="2" onclick="displayValue('2')">
+            <input type="button" class="num-button" id="button3" value="3" onclick="displayValue('3')">
+            <input type="button" class="num-button" id="button4" value="4" onclick="displayValue('4')">
+            <input type="button" class="num-button" id="button5" value="5" onclick="displayValue('5')">
+            <input type="button" class="num-button" id="button6" value="6" onclick="displayValue('6')">
+            <input type="button" class="num-button" id="button7" value="7" onclick="displayValue('7')">
+            <input type="button" class="num-button" id="button8" value="8" onclick="displayValue('8')">
+            <input type="button" class="num-button" id="button9" value="9" onclick="displayValue('9')">
+            <input type="button" class="operator-button" id="button-decimal" value="." onclick="displayValue('.')">
+            <input type="button" class="operator-button" id="button-add" value="+" onclick="displayValue('+')">
+            <input type="button" class="operator-button" id="button-minus" value="-" onclick="displayValue('-')">
+            <input type="button" class="operator-button" id="button-multiply" value="x" onclick="displayValue('*')">
+            <input type="button" class="operator-button" id="button-divide" value="/" onclick="displayValue('/')">
+            <input type="button" class="operator-button" id="button-result" value="=" onclick="doTheMath()">
         </div>
+
+        <input type="button" value="Clear" id="clear-button" onclick="clearDisplay()" style="background-color: darkred;">
     </main>
 </body>
 </html>
