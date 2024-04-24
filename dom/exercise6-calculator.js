@@ -25,30 +25,50 @@ function clearDisplay() {
 // evaluate the text in the display box and complete the equation
 function doTheMath() {
     let equation = displayBox.textContent;
+    // do something about the eval function! Remove it or sanitize it!
     let finalize = eval(equation);
     document.querySelector("#display-box").textContent = finalize;
     return finalize;
 }
 
 // make an object storing the buttons to reference with keystrokes
+const button0 = document.querySelector("#button0")
+const button1 = document.querySelector("#button1")
+const button2 = document.querySelector("#button2")
+const button3 = document.querySelector("#button3")
+const button4 = document.querySelector("#button4")
+const button5 = document.querySelector("#button5")
+const button6 = document.querySelector("#button6")
+const button7 = document.querySelector("#button7")
+const button8 = document.querySelector("#button8")
+const button9 = document.querySelector("#button9")
+const buttonAdd = document.querySelector("#button-add")
+const buttonMinus = document.querySelector("#button-minus")
+const buttonMultiply = document.querySelector("#button-multiply")
+const buttonDivide= document.querySelector("#button-divide")
+const buttonDecimal = document.querySelector("#button-decimal")
+const buttonResult = document.querySelector("#button-result")
+const buttonClear = document.querySelector("#clear-button")
+
+
 const allowedKeys = {
-    '0': document.querySelector("#button0"),
-    '1': document.querySelector("#button1"),
-    '2': document.querySelector("#button2"),
-    '3': document.querySelector("#button3"),
-    '4': document.querySelector("#button4"),
-    '5': document.querySelector("#button5"),
-    '6': document.querySelector("#button6"),
-    '7': document.querySelector("#button7"),
-    '8': document.querySelector("#button8"),
-    '9': document.querySelector("#button9"),
-    '+': document.querySelector("#button-add"),
-    '-': document.querySelector("#button-minus"),
-    '*': document.querySelector("#button-multiply"),
-    '/': document.querySelector("#button-divide"),
-    '.': document.querySelector("#button-decimal"),
-    'Enter': document.querySelector("#button-result"),
-    'Backspace': document.querySelector("#clear-button")
+    '0': button0,
+    '1': button1,
+    '2': button2,
+    '3': button3,
+    '4': button4,
+    '5': button5,
+    '6': button6,
+    '7': button7,
+    '8': button8,
+    '9': button9,
+    '+': buttonAdd,
+    '-': buttonMinus,
+    '*': buttonMultiply,
+    '/': buttonDivide,
+    '.': buttonDecimal,
+    'Enter': buttonResult,
+    'Backspace': buttonClear
 };
 
 // make a function for pressing the key down
