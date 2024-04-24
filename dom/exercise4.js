@@ -17,9 +17,8 @@ const deleteMe = document.querySelector("#removeButton");
 
 deleteMe.addEventListener("click", function() {
     const deleteP = document.querySelector("#fourthP");
-    deleteP.setAttribute("style", "display: none");
+    deleteP.remove(deleteMe);
 });
-
 
 // add the ability to when a user clicks a button a paragraph element is added
 const addMe = document.querySelector("#addButton");
