@@ -25,8 +25,7 @@ function clearDisplay() {
 // evaluate the text in the display box and complete the equation
 function doTheMath() {
     let equation = displayBox.textContent;
-    // do something about the eval function! Remove it or sanitize it!
-    let finalize = eval(equation);
+    let finalize = math.evaluate(equation);
     document.querySelector("#display-box").textContent = finalize;
     return finalize;
 }
@@ -43,12 +42,12 @@ function clickDaButton(buttonsArray) {
         const button = document.getElementById(buttonId);
         button.addEventListener("click", function() {
             const buttonText = button.textContent;
-            displayValue(buttonText);
             if (buttonId === "button-clear") {
                 clearDisplay();
-            };
-            if (buttonId === "button-result") {
+            } else if (buttonId === "button-result") {
                 doTheMath();
+            } else {
+                displayValue(buttonText);
             };
         });
     });
