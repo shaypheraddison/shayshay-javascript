@@ -50,6 +50,7 @@ main {
     font-size: 40px;
     background-color: rgba(19, 18, 18, 0.902);
     color: whitesmoke;
+    overflow: auto;
 }
 #button-clear {
     grid-column: 1 / 4;

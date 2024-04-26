@@ -31,6 +31,33 @@ function doTheMath() {
     return finalize;
 }
 
+const allowedButtons = [
+    "button0", "button1", "button2", "button3", "button4", "button5",
+    "button6", "button7", "button8", "button9", "button-decimal",
+    "button-multiply", "button-divide", "button-add", "button-minus",
+    "button-result", "button-clear"
+];
+
+function clickDaButton(buttonsArray) {
+    buttonsArray.forEach(function(buttonId) {
+        const button = document.getElementById(buttonId);
+        button.addEventListener("click", function() {
+            const buttonText = button.textContent;
+            displayValue(buttonText);
+            if (buttonId === "button-clear") {
+                clearDisplay();
+            };
+            if (buttonId === "button-result") {
+                doTheMath();
+            };
+        });
+    });
+};
+clickDaButton(allowedButtons);
+
+
+
+
 // make an object storing the buttons to reference with keystrokes
 const button0 = document.querySelector("#button0")
 const button1 = document.querySelector("#button1")
@@ -48,8 +75,7 @@ const buttonMultiply = document.querySelector("#button-multiply")
 const buttonDivide= document.querySelector("#button-divide")
 const buttonDecimal = document.querySelector("#button-decimal")
 const buttonResult = document.querySelector("#button-result")
-const buttonClear = document.querySelector("#clear-button")
-
+const buttonClear = clearDisplay;
 
 const allowedKeys = {
     '0': button0,
