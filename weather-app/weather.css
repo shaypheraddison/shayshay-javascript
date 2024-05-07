@@ -1,0 +1,47 @@
+body {
+    background-color:paleturquoise;
+}
+
+#locationBox {
+    width: 450px;
+    margin: 0 auto;
+    margin-top: 200px;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+#searchLocation {
+    width: 60%;
+    margin-right: 86px;
+    border-radius: 5px;
+}
+
+#searchButton {
+    width: 80px;
+    border-radius: 5px;
+}
+
+.weatherDisplayBox {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    border: 2px solid black;
+    width: 450px;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 8px;
+    align-items: center;
+}
+
+.displayGrid {
+    padding: 8px;
+    justify-self: center;
+}
+
+#gridItem1 {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+}
