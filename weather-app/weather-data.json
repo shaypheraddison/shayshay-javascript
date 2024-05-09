@@ -1,0 +1,16 @@
+[
+    {
+        "location": "Keller, TX",
+        "current_weather": "sunny",
+        "day_2_weather": "cloudy",
+        "day_3_weather": "cloudy",
+        "day_4_weather": "rainy"
+    },
+    {
+        "location": "Tacoma, WA",
+        "current_weather": "windy",
+        "day_2_weather": "cloudy",
+        "day_3_weather": "rainy",
+        "day_4_weather": "snowy"
+    }
+]
