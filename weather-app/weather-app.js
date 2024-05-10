@@ -3,6 +3,8 @@
 
 //create a function that will change the images at a given grid spot
 
+let inputBox = document.getElementById("searchLocation");
+
 const sunnyImage = new Image();
 sunnyImage.src = "Resources/sunny.png";
 
@@ -18,7 +20,7 @@ rainyImage.src = "Resources/rainy.png";
 const snowyImage = new Image();
 snowyImage.src = "Resources/snowy.png";
 
-const imageArray = [sunnyImage, cloudyImage, windyImage, rainyImage, snowyImage];
+const imageArray = [sunnyImage.src, cloudyImage.src, windyImage.src, rainyImage.src, snowyImage.src];
 
 const firstImage = document.getElementById("image1");
 const secondImage = document.getElementById("image2");
@@ -30,4 +32,12 @@ const gridImages = {
     secondDay: secondImage,
     thirdDay: thirdImage,
     fourthDay: fourthImage
+};
+
+const weatherData = {
+    location: "Keller, TX",
+    currentWeather: "windy",
+    day2Weather: "cloudy",
+    day3Weather: "rainy",
+    day4Weather: "sunny"
 };
