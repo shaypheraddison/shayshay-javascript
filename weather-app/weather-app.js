@@ -7,42 +7,29 @@ const locationInput = document.getElementById("searchLocation");
 const weatherBox = document.querySelector(".weatherDisplayBox");
 const inputBox = document.getElementById("locationBox");
 const searchButton = document.getElementById("searchButton");
-const apiKey = "62631cea2487c68825327dafba54dd27";
+const apiKey = "bebce22beee5345111cd44dd8326a9db";
 
 searchButton.addEventListener("click", event => {
     const location = locationInput.value;
-    getZipLat(location);
-    getZipLon(location);
-    getCityData();
+    getCityData(location);
 });
 
 
 // API requires LAT and LON coordinates. This function will obtain that data from the entered zip code and return it for future use
-async function getZipLat(zipCode){
-    const apiZipUrl = `http://api.openweathermap.org/geo/1.0/zip?zip=${zipCode}&appid=${apiKey}`;
-    const response = await fetch(apiZipUrl);
-    // console.log(response);
-    const jsonResponse = await response.json();
-    console.log(jsonResponse);
-    const lat = jsonResponse.lat;
-    console.log(lat);
-    return lat;
-};
 
-async function getZipLon(zipCode){
+async function getCityData(zipCode) {
     const apiZipUrl = `http://api.openweathermap.org/geo/1.0/zip?zip=${zipCode}&appid=${apiKey}`;
-    const response = await fetch(apiZipUrl);
-    // console.log(response);
-    const jsonResponse = await response.json();
-    const lon = jsonResponse.lon;
-    console.log(lon);
-    return lon;
-};
+    const response1 = await fetch(apiZipUrl);
+    const responseLatLon = await response1.json();
+    console.log(responseLatLon)
+    const lat = responseLatLon.lat;
+    const lon = responseLatLon.lon;
 
-function getCityData() {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${getZipLat}&lon=${getZipLon}&appid=${apiKey}`;
-    console.log(apiUrl);
-};
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    const response2 = await fetch(apiUrl);
+    const cityResponse = response2.json();
+    console.log(cityResponse);
+}; 
 
 
 
