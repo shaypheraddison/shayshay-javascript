@@ -1,10 +1,9 @@
 body {
-    background-image: url("Resources/rainy-gif.gif");
+    background-color:dimgray;
     background-size: cover;
     margin: 0 auto;
     width: 100%;
     height: 80vh;
-    
 }
 
 #locationBox {
@@ -26,6 +25,13 @@ body {
 #searchButton {
     width: 80px;
     border-radius: 5px;
+    background-color: whitesmoke;
+    color: steelblue;
+}
+
+#searchButton:hover {
+    background-color: steelblue;
+    color: whitesmoke;
 }
 
 .weatherDisplayBox {
