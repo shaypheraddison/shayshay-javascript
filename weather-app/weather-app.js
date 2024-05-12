@@ -1,7 +1,6 @@
 // Take data from the api and display it to the specified locations on the webpage
-// First thing to do is to 'fetch' the data from any weather api
 
-//create a function that will change the images at a given grid spot
+// Create variables for the html elements that will be altered from the JS code. Also need one for the API key
 
 const locationInput = document.getElementById("searchLocation");
 const weatherBox = document.querySelector(".weatherDisplayBox");
@@ -9,10 +8,41 @@ const inputBox = document.getElementById("locationBox");
 const searchButton = document.getElementById("searchButton");
 const apiKey = "bebce22beee5345111cd44dd8326a9db";
 
-searchButton.addEventListener("click", event => {
-    const location = locationInput.value;
-    getCityData(location);
-});
+// Create variables for background images to change and display images to change as well
+
+const backgroundGif = {
+    "Cloudy": "Resources/cloudy-gif.gif",
+    "Sunny": "Resources/sunny-gif.gif",
+    "Windy": "Resources/windy-gif.gif",
+    "Rainy": "Resources/rainy-gif.gif",
+    "Snowy": "Resources/snow-gif.gif"
+};
+
+const weatherImg = {
+    "Cloudy": "Resources/cloudy.png",
+    "Sunny": "Resources/sunny.png",
+    "Windy": "Resources/windy.png",
+    "Rainy": "Resources/rainy.png",
+    "Snowy": "Resources/snow.png"
+};
+
+const weatherIdNumbers = {
+    rainy: [
+        200, 201, 202, 210, 211, 212, 221, 230, 231, 232,
+        300, 301, 302, 310, 311, 312, 313, 314, 321,
+        500, 501, 502, 503, 504, 511, 520, 521, 522, 531
+    ],
+    snowy: [
+        600, 601, 602, 611, 612, 613, 615, 616, 620, 621, 622
+    ],
+    cloudy: [
+        801, 802, 803, 804
+    ],
+    clear: [
+        800
+    ]
+};
+
 
 
 // API requires LAT and LON coordinates. This function will obtain that data from the entered zip code and return it for future use
@@ -27,48 +57,38 @@ async function getCityData(zipCode) {
 
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
     const response2 = await fetch(apiUrl);
-    const cityResponse = response2.json();
+    const cityResponse = await response2.json();
     console.log(cityResponse);
+
+    return cityResponse;
 }; 
 
+// Need to pull weather data from json format and return needed information to update current and future weather
 
+async function getWeatherData() {
+    const location = locationInput.value;
+    const data = await getCityData(location);
+    const cityName = data.name
 
+    const displayCityName = document.getElementById("cityName");
+    displayCityName.textContent = cityName;
+    console.log(cityName);
 
+    let kelvinTemp = data.main.temp;
+    let celsiusTemp = kelvinTemp - 273;
+    let fahrenheit = celsiusTemp * (9 / 5) + 32;
+    fahrenheit = Math.floor(fahrenheit);
+    const displayCurrentTemp = document.getElementById("currentTemp");
+    displayCurrentTemp.textContent = fahrenheit;
+    console.log(fahrenheit);
 
+    const weatherId = data.weather[0].id;
+    
+    console.log(weatherId);
+}
 
-// const sunnyImage = new Image();
-// sunnyImage.src = "Resources/sunny.png";
+// Create a main function that runs everything based on the event listener for clicking the submit button
 
-// const cloudyImage = new Image();
-// cloudyImage.src = "Resources/cloudy.png";
-
-// const windyImage = new Image();
-// windyImage.src = "Resources/windy.png";
-
-// const rainyImage = new Image();
-// rainyImage.src = "Resources/rainy.png";
-
-// const snowyImage = new Image();
-// snowyImage.src = "Resources/snowy.png";
-
-// const imageArray = [sunnyImage.src, cloudyImage.src, windyImage.src, rainyImage.src, snowyImage.src];
-
-// const firstImage = document.getElementById("image1");
-// const secondImage = document.getElementById("image2");
-// const thirdImage = document.getElementById("image3");
-// const fourthImage = document.getElementById("image4");
-
-// const gridImages = {
-//     currentDay: firstImage,
-//     secondDay: secondImage,
-//     thirdDay: thirdImage,
-//     fourthDay: fourthImage
-// };
-
-// const weatherData = {
-//     location: "Keller, TX",
-//     currentWeather: "windy",
-//     day2Weather: "cloudy",
-//     day3Weather: "rainy",
-//     day4Weather: "sunny"
-// };
+searchButton.addEventListener("click", event => {
+    getWeatherData();
+});

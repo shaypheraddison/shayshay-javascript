@@ -34,6 +34,10 @@ body {
     color: whitesmoke;
 }
 
+#cityName {
+    margin: 0 auto;
+}
+
 .weatherDisplayBox {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -47,6 +51,7 @@ body {
     border-radius: 8px;
     align-items: center;
     background-color: steelblue;
+    align-content: stretch;
 }
 
 .displayGrid {
