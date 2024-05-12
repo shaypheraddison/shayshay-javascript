@@ -1,5 +1,5 @@
 body {
-    background-color:dimgray;
+    background-image: url("Resources/default-bg.avif");
     background-size: cover;
     margin: 0 auto;
     width: 100%;
@@ -57,7 +57,11 @@ body {
 .displayGrid {
     padding: 8px;
     justify-self: center;
-    /* display: none; */
+}
+
+.gridImg {
+    display: block;
+    text-align: center;
 }
 
 #gridItem1 {

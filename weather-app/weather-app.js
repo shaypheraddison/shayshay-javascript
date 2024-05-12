@@ -8,29 +8,41 @@ const inputBox = document.getElementById("locationBox");
 const searchButton = document.getElementById("searchButton");
 const apiKey = "bebce22beee5345111cd44dd8326a9db";
 
+const cloudyGif = "Resources/cloudy-gif.gif";
+const sunnyGif = "Resources/sunny-gif.gif";
+const rainyGif = "Resources/rainy-gif.gif";
+const snowyGif = "Resources/snow-gif.gif";
+const defaultGif = "Resources/default-bg.avif";
+
+const cloudyImg = "Resources/cloudy.png";
+const sunnyImg = "Resources/sunny.png";
+const rainyImg = "Resources/rainy.png";
+const snowyImg = "Resources/snowy.png";
+const otherImg = "Resources/other.png";
+
 // Create variables for background images to change and display images to change as well
 
 const backgroundGif = {
-    "Cloudy": "Resources/cloudy-gif.gif",
-    "Sunny": "Resources/sunny-gif.gif",
-    "Windy": "Resources/windy-gif.gif",
-    "Rainy": "Resources/rainy-gif.gif",
-    "Snowy": "Resources/snow-gif.gif"
+    "Cloudy": cloudyGif,
+    "Sunny": sunnyGif,
+    "Rainy": rainyGif,
+    "Snowy": snowyGif,
+    "Default": defaultGif
 };
 
 const weatherImg = {
-    "Cloudy": "Resources/cloudy.png",
-    "Sunny": "Resources/sunny.png",
-    "Windy": "Resources/windy.png",
-    "Rainy": "Resources/rainy.png",
-    "Snowy": "Resources/snow.png"
+    "Cloudy": cloudyImg,
+    "Sunny": sunnyImg,
+    "Rainy": rainyImg,
+    "Snowy": snowyImg,
+    "Other": otherImg
 };
 
 const weatherIdNumbers = {
     rainy: [
         200, 201, 202, 210, 211, 212, 221, 230, 231, 232,
         300, 301, 302, 310, 311, 312, 313, 314, 321,
-        500, 501, 502, 503, 504, 511, 520, 521, 522, 531
+        500, 501, 502, 503, 504, 511, 520, 521, 522, 531, 701
     ],
     snowy: [
         600, 601, 602, 611, 612, 613, 615, 616, 620, 621, 622
@@ -82,8 +94,38 @@ async function getWeatherData() {
     displayCurrentTemp.textContent = fahrenheit;
     console.log(fahrenheit);
 
+    let weatherImageSrc = "";
+    let weatherGifSrc = "";
     const weatherId = data.weather[0].id;
     
+    if (weatherIdNumbers.rainy.includes(weatherId)) {
+        weatherImageSrc = weatherImg.Rainy;
+    } else if (weatherIdNumbers.snowy.includes(weatherId)) {
+        weatherImageSrc = weatherImg.Snowy;
+    } else if (weatherIdNumbers.cloudy.includes(weatherId)) {
+        weatherImageSrc = weatherImg.Cloudy;
+    } else if (weatherIdNumbers.clear.includes(weatherId)) {
+        weatherImageSrc = weatherImg.Sunny;
+    } else {
+        weatherImageSrc = weatherImg.Other;
+    }
+
+    if (weatherIdNumbers.rainy.includes(weatherId)) {
+        weatherGifSrc = backgroundGif.Rainy;
+    } else if (weatherIdNumbers.snowy.includes(weatherId)) {
+        weatherGifSrc = backgroundGif.Snowy;
+    } else if (weatherIdNumbers.cloudy.includes(weatherId)) {
+        weatherGifSrc = backgroundGif.Cloudy;
+    } else if (weatherIdNumbers.clear.includes(weatherId)) {
+        weatherGifSrc = backgroundGif.Sunny;
+    } else {
+        weatherGifSrc = backgroundGif.Other;
+    }
+
+    const currentWeatherImg = document.getElementById("image1");
+    currentWeatherImg.src = weatherImageSrc;
+    document.body.style.backgroundImage = `url(${weatherGifSrc})`;
+
     console.log(weatherId);
 }
 
