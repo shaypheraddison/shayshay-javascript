@@ -1,5 +1,5 @@
 body {
-    background-image: url("Resources/default-bg.avif");
+    background-image: url("Resources/default-bg.webp");
     background-size: cover;
     margin: 0 auto;
     width: 100%;
@@ -7,9 +7,10 @@ body {
 }
 
 #locationBox {
-    width: 450px;
+    width: 445px;
     margin: 0 auto;
     margin-top: 200px;
+    margin-bottom: 10px;
     border: 2px solid black;
     padding: 5px;
     border-radius: 8px;
@@ -17,13 +18,13 @@ body {
 }
 
 #searchLocation {
-    width: 60%;
-    margin-right: 86px;
+    width: 66%;
+    margin-right: 70px;
     border-radius: 5px;
 }
 
 #searchButton {
-    width: 80px;
+    width: 60px;
     border-radius: 5px;
     background-color: whitesmoke;
     color: steelblue;
@@ -43,28 +44,60 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     border: 2px solid black;
-    width: 450px;
-    height: 500px;
+    width: 455px;
+    height: 550px;
     margin: 0 auto;
-    margin-top: 20px;
-    padding: 5px;
     border-radius: 8px;
+    justify-content: center;
     align-items: center;
+    text-align: center;
     background-color: steelblue;
-    align-content: stretch;
 }
 
 .displayGrid {
-    padding: 8px;
-    justify-self: center;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    justify-items: center;
 }
 
 .gridImg {
-    display: block;
-    text-align: center;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
 }
 
 #gridItem1 {
     grid-column: 1 / 4;
     grid-row: 1 / 2;
+    border-bottom: 1px solid black;
+}
+
+#gridItem2, #gridItem3 {
+    border-right: 1px solid black;
+}
+
+#currentTemp, #secondTemp, #thirdTemp, #fourthTemp {
+    font-size: 40px;
+    margin: 0 auto;
+    font-family: 'Gill Sans';
+    color: whitesmoke;
+    text-shadow:0 0 5px black;
+}
+
+.weatherHeader {
+    font-size: 33px;
+    margin: 0 auto;
+    font-family: 'Gill Sans';
+    color:whitesmoke;
+    text-shadow:0 0 8px black;
+}
+
+#cityName {
+    font-size: 48px;
+    text-decoration: underline;
+    margin: 0 auto;
+    font-family: 'Gill Sans';
+    color: whitesmoke;
+    text-shadow:0 0 5px black;
 }

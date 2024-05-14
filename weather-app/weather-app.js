@@ -13,7 +13,7 @@ const cloudyGif = "Resources/cloudy-gif.gif";
 const sunnyGif = "Resources/sunny-gif.gif";
 const rainyGif = "Resources/rainy-gif.gif";
 const snowyGif = "Resources/snow-gif.gif";
-const defaultGif = "Resources/default-bg.avif";
+const defaultGif = "Resources/default-bg.webp";
 
 const cloudyImg = "Resources/cloudy.png";
 const sunnyImg = "Resources/sunny.png";
@@ -56,22 +56,20 @@ const weatherIdNumbers = {
     ]
 };
 
-
-
 // API requires LAT and LON coordinates. This function will obtain that data from the entered zip code and return it for future use
 
 async function getCityData(zipCode) {
     const apiZipUrl = `http://api.openweathermap.org/geo/1.0/zip?zip=${zipCode}&appid=${apiKey}`;
     const response1 = await fetch(apiZipUrl);
     const responseLatLon = await response1.json();
-    console.log(responseLatLon)
+    // console.log(responseLatLon)
     const lat = responseLatLon.lat;
     const lon = responseLatLon.lon;
 
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
     const response2 = await fetch(apiUrl);
     const cityResponse = await response2.json();
-    console.log(cityResponse);
+    // console.log(cityResponse);
 
     return cityResponse;
 }; 
@@ -80,14 +78,14 @@ async function getCityData2(zipcode2) {
     const apiZipUrl = `http://api.openweathermap.org/geo/1.0/zip?zip=${zipcode2}&appid=${apiKey2}`;
     const response1 = await fetch(apiZipUrl);
     const responseLatLon = await response1.json();
-    console.log(responseLatLon)
+    // console.log(responseLatLon)
     const lat = responseLatLon.lat;
     const lon = responseLatLon.lon;
 
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=4&appid=${apiKey2}&units=imperial`;
     const response2 = await fetch(apiUrl);
     const cityResponse = await response2.json();
-    console.log(cityResponse);
+    // console.log(cityResponse);
 
     return cityResponse;
 }
@@ -101,13 +99,13 @@ async function getCurrentWeatherData() {
 
     const displayCityName = document.getElementById("cityName");
     displayCityName.textContent = cityName;
-    console.log(cityName);
+    // console.log(cityName);
 
     let fahrenheit = data.main.temp
     fahrenheit = Math.floor(fahrenheit);
     const displayCurrentTemp = document.getElementById("currentTemp");
-    displayCurrentTemp.textContent = fahrenheit;
-    console.log(fahrenheit);
+    displayCurrentTemp.textContent = fahrenheit + "℉";
+    // console.log(fahrenheit);
 
     let weatherImageSrc = "";
     let weatherGifSrc = "";
@@ -141,7 +139,7 @@ async function getCurrentWeatherData() {
     currentWeatherImg.src = weatherImageSrc;
     document.body.style.backgroundImage = `url(${weatherGifSrc})`;
 
-    console.log(weatherId);
+    // console.log(weatherId);
 }
 
 // Create a function to gather the data for days 2, 3 and 4 and display them on the DOM
@@ -160,15 +158,15 @@ async function getOtherDayWeatherData() {
     day4Fahrenheit = Math.floor(day4Fahrenheit);
 
     const displayDay2Temp = document.getElementById("secondTemp");
-    displayDay2Temp.textContent = day2Fahrenheit;
+    displayDay2Temp.textContent = day2Fahrenheit + "℉";
 
     const displayDay3Temp = document.getElementById("thirdTemp");
-    displayDay3Temp.textContent = day3Fahrenheit;
+    displayDay3Temp.textContent = day3Fahrenheit + "℉";
 
     const displayDay4Temp = document.getElementById("fourthTemp");
-    displayDay4Temp.textContent = day4Fahrenheit;
+    displayDay4Temp.textContent = day4Fahrenheit + "℉";
 
-    console.log(day2Fahrenheit, day3Fahrenheit, day4Fahrenheit);
+    // console.log(day2Fahrenheit, day3Fahrenheit, day4Fahrenheit);
 
     let weatherImageSrc2 = "";
     let weatherImageSrc3 = "";
@@ -229,4 +227,11 @@ async function getOtherDayWeatherData() {
 searchButton.addEventListener("click", event => {
     getCurrentWeatherData();
     getOtherDayWeatherData();
+});
+
+document.addEventListener("keypress", event => {
+    if (event.key === "Enter") {
+        getCurrentWeatherData();
+        getOtherDayWeatherData();
+    };
 });
