@@ -7,7 +7,6 @@ const weatherBox = document.querySelector(".weatherDisplayBox");
 const inputBox = document.getElementById("locationBox");
 const searchButton = document.getElementById("searchButton");
 const apiKey = "bebce22beee5345111cd44dd8326a9db";
-const apiKey2 = "047cf777409b3bed3802d38b91648d3a";
 
 const cloudyGif = "Resources/cloudy-gif.gif";
 const sunnyGif = "Resources/sunny-gif.gif";
@@ -67,7 +66,7 @@ async function cityData(zipCode) {
     const lattitude = zipJson.lat;
     const longitude = zipJson.lon;
 
-    const apiCity = `https://api.openweathermap.org/data/2.5/forecast?lat=${lattitude}&lon=${longitude}&cnt=4&appid=${apiKey2}&units=imperial`;
+    const apiCity = `https://api.openweathermap.org/data/2.5/forecast?lat=${lattitude}&lon=${longitude}&cnt=4&appid=${apiKey}&units=imperial`;
     const cityResponse = await fetch(apiCity);
     const cityJson = await cityResponse.json();
 
