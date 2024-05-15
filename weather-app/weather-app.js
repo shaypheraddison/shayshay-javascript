@@ -84,7 +84,7 @@ async function cityData(zipCode) {
 async function currentForecast() {
     const locationValue = locationInput.value;
     const data = await cityData(locationValue);
-    const cityName = data.name
+    const cityName = data.city.name
 
     const displayCityName = document.getElementById("cityName");
     displayCityName.textContent = cityName;
