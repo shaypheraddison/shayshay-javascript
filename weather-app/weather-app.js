@@ -75,27 +75,38 @@ async function cityData(zipCode) {
     return cityJson;
 } 
 
-// Make a function that will simplify getting the temperature and displaying it properly
+// Get the location value to be used later in various functions
+async function fetchLocation() {
+    const locationValue = locationInput.value;
+    return await cityData(locationValue);
+}
 
-// async function temperature() {
-    
-// }
+// Make a function that will simplify getting the temperature and displaying it properly
+async function checkCityTemp() {
+    const tempData = await fetchLocation();
+    const daysIndex = [
+        {index: 0, elementId: "currentTemp"},
+        {index: 1, elementId: "secondTemp"},
+        {index: 2, elementId: "thirdTemp"},
+        {index: 3, elementId: "fourthTemp"},
+    ];
+
+    daysIndex.forEach(day => {
+        const fahrenheit = Math.floor(tempData.list[day.index].main.temp);
+        const displayTemp = document.getElementById(day.elementId);
+        displayTemp.textContent = `${fahrenheit}℉`;
+    });
+}
 
 async function currentForecast() {
-    const locationValue = locationInput.value;
-    const data = await cityData(locationValue);
+    const data = await fetchLocation();
     const cityName = data.city.name
 
     const displayCityName = document.getElementById("cityName");
     displayCityName.textContent = cityName;
 
-
-    // convert this section into a function
-    let fahrenheit = data.list[0].main.temp
-    fahrenheit = Math.floor(fahrenheit);
-    const displayCurrentTemp = document.getElementById("currentTemp");
-    displayCurrentTemp.textContent = fahrenheit + "℉";
-    // convert lines 94 - 98 into a function
+    // corrected repeating code into a single function
+    checkCityTemp();
 
     // convert this section into a function
     let weatherImageSrc = "";
@@ -135,32 +146,7 @@ async function currentForecast() {
 // Create a function to gather the data for days 2, 3 and 4 and display them on the DOM
 
 async function getOtherDayWeatherData() {
-    const locationValue = locationInput.value;
-    const data2 = await cityData(locationValue);
-
-
-    // convert this into a function, or add it to the current forecast temp function somehow
-    let day2Fahrenheit = data2.list[1].main.temp;
-    day2Fahrenheit = Math.floor(day2Fahrenheit);
-
-    let day3Fahrenheit = data2.list[2].main.temp;
-    day3Fahrenheit = Math.floor(day3Fahrenheit);
-
-    let day4Fahrenheit = data2.list[3].main.temp;
-    day4Fahrenheit = Math.floor(day4Fahrenheit);
-
-    const displayDay2Temp = document.getElementById("secondTemp");
-    displayDay2Temp.textContent = day2Fahrenheit + "℉";
-
-    const displayDay3Temp = document.getElementById("thirdTemp");
-    displayDay3Temp.textContent = day3Fahrenheit + "℉";
-
-    const displayDay4Temp = document.getElementById("fourthTemp");
-    displayDay4Temp.textContent = day4Fahrenheit + "℉";
-    // convert lines 144 - 160 into a function
-
-    // console.log(day2Fahrenheit, day3Fahrenheit, day4Fahrenheit);
-
+    const data2 = await fetchLocation();
 
     // convert this into a function
     let weatherImageSrc2 = "";
