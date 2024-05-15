@@ -56,60 +56,52 @@ const weatherIdNumbers = {
     ]
 };
 
-// API requires LAT and LON coordinates. This function will obtain that data from the entered zip code and return it for future use
+// Create functions that can be used later in the scope to prevent repeating
 
-async function getCityData(zipCode) {
-    const apiZipUrl = `http://api.openweathermap.org/geo/1.0/zip?zip=${zipCode}&appid=${apiKey}`;
-    const response1 = await fetch(apiZipUrl);
-    const responseLatLon = await response1.json();
-    // console.log(responseLatLon)
-    const lat = responseLatLon.lat;
-    const lon = responseLatLon.lon;
+// Get the lattitude and longitude and all four days' forecast within a single function
+async function cityData(zipCode) {
+    const apiZip = `http://api.openweathermap.org/geo/1.0/zip?zip=${zipCode}&appid=${apiKey}`;
+    const zipResponse = await fetch(apiZip);
+    const zipJson = await zipResponse.json();
 
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
-    const response2 = await fetch(apiUrl);
-    const cityResponse = await response2.json();
-    // console.log(cityResponse);
+    const lattitude = zipJson.lat;
+    const longitude = zipJson.lon;
 
-    return cityResponse;
-}; 
+    const apiCity = `https://api.openweathermap.org/data/2.5/forecast?lat=${lattitude}&lon=${longitude}&cnt=4&appid=${apiKey2}&units=imperial`;
+    const cityResponse = await fetch(apiCity);
+    const cityJson = await cityResponse.json();
 
-async function getCityData2(zipcode2) { 
-    const apiZipUrl = `http://api.openweathermap.org/geo/1.0/zip?zip=${zipcode2}&appid=${apiKey2}`;
-    const response1 = await fetch(apiZipUrl);
-    const responseLatLon = await response1.json();
-    // console.log(responseLatLon)
-    const lat = responseLatLon.lat;
-    const lon = responseLatLon.lon;
+    console.log(cityJson);
 
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=4&appid=${apiKey2}&units=imperial`;
-    const response2 = await fetch(apiUrl);
-    const cityResponse = await response2.json();
-    // console.log(cityResponse);
+    return cityJson;
+} 
 
-    return cityResponse;
-}
+// Make a function that will simplify getting the temperature and displaying it properly
 
-// Need to pull weather data from json format and return needed information to update current and future weather
+// async function temperature() {
+    
+// }
 
-async function getCurrentWeatherData() {
-    const location = locationInput.value;
-    const data = await getCityData(location);
+async function currentForecast() {
+    const locationValue = locationInput.value;
+    const data = await cityData(locationValue);
     const cityName = data.name
 
     const displayCityName = document.getElementById("cityName");
     displayCityName.textContent = cityName;
-    // console.log(cityName);
 
-    let fahrenheit = data.main.temp
+
+    // convert this section into a function
+    let fahrenheit = data.list[0].main.temp
     fahrenheit = Math.floor(fahrenheit);
     const displayCurrentTemp = document.getElementById("currentTemp");
     displayCurrentTemp.textContent = fahrenheit + "℉";
-    // console.log(fahrenheit);
+    // convert lines 94 - 98 into a function
 
+    // convert this section into a function
     let weatherImageSrc = "";
     let weatherGifSrc = "";
-    const weatherId = data.weather[0].id;
+    const weatherId = data.list[0].weather[0].id;
     
     if (weatherIdNumbers.rainy.includes(weatherId)) {
         weatherImageSrc = weatherImg.Rainy;
@@ -138,16 +130,17 @@ async function getCurrentWeatherData() {
     const currentWeatherImg = document.getElementById("image1");
     currentWeatherImg.src = weatherImageSrc;
     document.body.style.backgroundImage = `url(${weatherGifSrc})`;
-
-    // console.log(weatherId);
+    // convert lines 102 - 132 into a function
 }
 
 // Create a function to gather the data for days 2, 3 and 4 and display them on the DOM
 
 async function getOtherDayWeatherData() {
-    const location2 = locationInput.value;
-    const data2 = await getCityData2(location2);
+    const locationValue = locationInput.value;
+    const data2 = await cityData(locationValue);
 
+
+    // convert this into a function, or add it to the current forecast temp function somehow
     let day2Fahrenheit = data2.list[1].main.temp;
     day2Fahrenheit = Math.floor(day2Fahrenheit);
 
@@ -165,9 +158,12 @@ async function getOtherDayWeatherData() {
 
     const displayDay4Temp = document.getElementById("fourthTemp");
     displayDay4Temp.textContent = day4Fahrenheit + "℉";
+    // convert lines 144 - 160 into a function
 
     // console.log(day2Fahrenheit, day3Fahrenheit, day4Fahrenheit);
 
+
+    // convert this into a function
     let weatherImageSrc2 = "";
     let weatherImageSrc3 = "";
     let weatherImageSrc4 = "";
@@ -219,19 +215,20 @@ async function getOtherDayWeatherData() {
 
     const currentWeatherImg4 = document.getElementById("image4");
     currentWeatherImg4.src = weatherImageSrc4;
+    // convert lines 164 - 214 into a function
 
 }
 
 // Create a main function that runs everything based on the event listener for clicking the submit button
 
 searchButton.addEventListener("click", event => {
-    getCurrentWeatherData();
+    currentForecast();
     getOtherDayWeatherData();
 });
 
 document.addEventListener("keypress", event => {
     if (event.key === "Enter") {
-        getCurrentWeatherData();
+        currentForecast();
         getOtherDayWeatherData();
     };
 });
