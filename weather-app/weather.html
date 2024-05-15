@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="weather-app.js"></script>
+    <link rel="stylesheet" href="weather.css">
+    <title>Weather App</title>
+</head>
+<body>
+
+    <div class="locationGrid" id="locationBox">
+        <input id="searchLocation" type="text" placeholder="Ex:Zip/Post Code,Country Code(Optional for US)">
+        <button id="searchButton">Search</button>
+    </div>
+
+    <div class="weatherDisplayBox">
+        <div id="gridItem1" class="displayGrid">
+            <h1 id="cityName"></h1>
+            <img id="image1" src="" class="gridImg">
+            <h2 class="weatherHeader">Current Weather</h2>
+            <h3 id="currentTemp"></h2>
+        </div>
+        <div id="gridItem2" class="displayGrid">
+            <img id="image2" src="" class="gridImg">
+            <h2 class="weatherHeader">Day 2 Forecast</h2>
+            <h3 id="secondTemp"></h2>
+        </div>
+        <div id="gridItem3" class="displayGrid">
+            <img id="image3" src="" class="gridImg">
+            <h2 class="weatherHeader">Day 3 Forecast</h2>
+            <h3 id="thirdTemp"></h3>
+        </div>
+        <div id="gridItem4" class="displayGrid">
+            <img id="image4" src="" class="gridImg">
+            <h2 class="weatherHeader">Day 4 Forecast</h2>
+            <h3 id="fourthTemp"></h3>
+        </div>
+    </div>
+    
+    
+
+
+</body>
+</html>
