@@ -55,6 +55,13 @@ const weatherIdNumbers = {
     ]
 };
 
+const weatherImageArray = [
+    {index: 0, imageId: "image1", imageSource: "", elementId: "currentTemp"},
+    {index: 1, imageId: "image2", imageSource: "", elementId: "secondTemp"},
+    {index: 2, imageId: "image3", imageSource: "", elementId: "thirdTemp"},
+    {index: 3, imageId: "image4", imageSource: "", elementId: "fourthTemp"},
+];
+
 // Create functions that can be used later in the scope to prevent repeating
 
 // Get the lattitude and longitude and all four days' forecast within a single function
@@ -76,144 +83,70 @@ async function cityData(zipCode) {
 } 
 
 // Get the location value to be used later in various functions
-async function fetchLocation() {
+async function cityValue() {
     const locationValue = locationInput.value;
     return await cityData(locationValue);
 }
 
 // Make a function that will simplify getting the temperature and displaying it properly
 async function checkCityTemp() {
-    const tempData = await fetchLocation();
-    const daysIndex = [
-        {index: 0, elementId: "currentTemp"},
-        {index: 1, elementId: "secondTemp"},
-        {index: 2, elementId: "thirdTemp"},
-        {index: 3, elementId: "fourthTemp"},
-    ];
+    const tempData = await cityValue();
 
-    daysIndex.forEach(day => {
+    weatherImageArray.forEach(day => {
         const fahrenheit = Math.floor(tempData.list[day.index].main.temp);
         const displayTemp = document.getElementById(day.elementId);
         displayTemp.textContent = `${fahrenheit}℉`;
     });
 }
 
-async function currentForecast() {
-    const data = await fetchLocation();
+async function displayForecast() {
+    const data = await cityValue();
     const cityName = data.city.name
 
     const displayCityName = document.getElementById("cityName");
     displayCityName.textContent = cityName;
-
-    // corrected repeating code into a single function
     checkCityTemp();
-
-    // convert this section into a function
-    let weatherImageSrc = "";
-    let weatherGifSrc = "";
-    const weatherId = data.list[0].weather[0].id;
-    
-    if (weatherIdNumbers.rainy.includes(weatherId)) {
-        weatherImageSrc = weatherImg.Rainy;
-    } else if (weatherIdNumbers.snowy.includes(weatherId)) {
-        weatherImageSrc = weatherImg.Snowy;
-    } else if (weatherIdNumbers.cloudy.includes(weatherId)) {
-        weatherImageSrc = weatherImg.Cloudy;
-    } else if (weatherIdNumbers.clear.includes(weatherId)) {
-        weatherImageSrc = weatherImg.Sunny;
-    } else {
-        weatherImageSrc = weatherImg.Other;
-    }
-
-    if (weatherIdNumbers.rainy.includes(weatherId)) {
-        weatherGifSrc = backgroundGif.Rainy;
-    } else if (weatherIdNumbers.snowy.includes(weatherId)) {
-        weatherGifSrc = backgroundGif.Snowy;
-    } else if (weatherIdNumbers.cloudy.includes(weatherId)) {
-        weatherGifSrc = backgroundGif.Cloudy;
-    } else if (weatherIdNumbers.clear.includes(weatherId)) {
-        weatherGifSrc = backgroundGif.Sunny;
-    } else {
-        weatherGifSrc = backgroundGif.Other;
-    }
-
-    const currentWeatherImg = document.getElementById("image1");
-    currentWeatherImg.src = weatherImageSrc;
-    document.body.style.backgroundImage = `url(${weatherGifSrc})`;
-    // convert lines 102 - 132 into a function
 }
 
-// Create a function to gather the data for days 2, 3 and 4 and display them on the DOM
+async function setAppImages() {
+    const imageData = await cityValue();
+    let weatherGifSrc = "";
 
-async function getOtherDayWeatherData() {
-    const data2 = await fetchLocation();
+    weatherImageArray.forEach(day => {
+        const weatherId = imageData.list[day.index].weather[0].id;
+        if (weatherIdNumbers.rainy.includes(weatherId)) {
+            weatherImageArray.imageSource = weatherImg.Rainy;
+            weatherGifSrc = backgroundGif.Rainy;
+        } else if (weatherIdNumbers.snowy.includes(weatherId)) {
+            weatherImageArray.imageSource = weatherImg.Snowy;
+            weatherGifSrc = backgroundGif.Snowy;
+        } else if (weatherIdNumbers.cloudy.includes(weatherId)) {
+            weatherImageArray.imageSource = weatherImg.Cloudy;
+            weatherGifSrc = backgroundGif.Cloudy;
+        } else if (weatherIdNumbers.clear.includes(weatherId)) {
+            weatherImageArray.imageSource = weatherImg.Sunny
+            weatherGifSrc = backgroundGif.Sunny;
+        } else {
+            weatherImageArray.imageSource = weatherImg.Other;
+            weatherGifSrc = backgroundGif.Other;
+        }
 
-    // convert this into a function
-    let weatherImageSrc2 = "";
-    let weatherImageSrc3 = "";
-    let weatherImageSrc4 = "";
-    const weatherId2 = data2.list[1].weather[0].id;
-    const weatherId3 = data2.list[2].weather[0].id;
-    const weatherId4 = data2.list[3].weather[0].id;
-    
-    if (weatherIdNumbers.rainy.includes(weatherId2)) {
-        weatherImageSrc2 = weatherImg.Rainy;
-    } else if (weatherIdNumbers.snowy.includes(weatherId2)) {
-        weatherImageSrc2 = weatherImg.Snowy;
-    } else if (weatherIdNumbers.cloudy.includes(weatherId2)) {
-        weatherImageSrc2 = weatherImg.Cloudy;
-    } else if (weatherIdNumbers.clear.includes(weatherId2)) {
-        weatherImageSrc2 = weatherImg.Sunny;
-    } else {
-        weatherImageSrc2 = weatherImg.Other;
-    }
-
-    const currentWeatherImg2 = document.getElementById("image2");
-    currentWeatherImg2.src = weatherImageSrc2;
-
-    if (weatherIdNumbers.rainy.includes(weatherId3)) {
-        weatherImageSrc3 = weatherImg.Rainy;
-    } else if (weatherIdNumbers.snowy.includes(weatherId3)) {
-        weatherImageSrc3 = weatherImg.Snowy;
-    } else if (weatherIdNumbers.cloudy.includes(weatherId3)) {
-        weatherImageSrc3 = weatherImg.Cloudy;
-    } else if (weatherIdNumbers.clear.includes(weatherId3)) {
-        weatherImageSrc3 = weatherImg.Sunny;
-    } else {
-        weatherImageSrc3 = weatherImg.Other;
-    }
-
-    const currentWeatherImg3 = document.getElementById("image3");
-    currentWeatherImg3.src = weatherImageSrc3;
-
-    if (weatherIdNumbers.rainy.includes(weatherId4)) {
-        weatherImageSrc4 = weatherImg.Rainy;
-    } else if (weatherIdNumbers.snowy.includes(weatherId4)) {
-        weatherImageSrc4 = weatherImg.Snowy;
-    } else if (weatherIdNumbers.cloudy.includes(weatherId4)) {
-        weatherImageSrc4 = weatherImg.Cloudy;
-    } else if (weatherIdNumbers.clear.includes(weatherId4)) {
-        weatherImageSrc4 = weatherImg.Sunny;
-    } else {
-        weatherImageSrc4 = weatherImg.Other;
-    }
-
-    const currentWeatherImg4 = document.getElementById("image4");
-    currentWeatherImg4.src = weatherImageSrc4;
-    // convert lines 164 - 214 into a function
-
+        let iconImage = document.getElementById(day.imageId);
+        iconImage.src = weatherImageArray.imageSource;
+        document.body.style.backgroundImage = `url(${weatherGifSrc})`;
+    });
 }
 
 // Create a main function that runs everything based on the event listener for clicking the submit button
 
 searchButton.addEventListener("click", event => {
-    currentForecast();
-    getOtherDayWeatherData();
+    displayForecast();
+    setAppImages();
 });
 
 document.addEventListener("keypress", event => {
     if (event.key === "Enter") {
-        currentForecast();
-        getOtherDayWeatherData();
+        displayForecast();
+        setAppImages();
     };
 });
